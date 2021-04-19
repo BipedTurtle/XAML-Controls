@@ -3,10 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="clr-namespace:XAML_Controls.Controls"
         xmlns:local="clr-namespace:XAML_Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="500">
     <Grid>
-
+        <c:TwoColumnsPanel Margin="25"
+                           Background="Orange">
+            <TextBlock Text="Kika1"/>
+            <TextBlock Text="Kika2"/>
+            <TextBlock Text="Kika2"/>
+            <TextBlock Text="Kika2"/>
+            <TextBlock Text="Kika2"/>
+        </c:TwoColumnsPanel>
     </Grid>
 </Window>
