@@ -10,11 +10,15 @@
     <Grid>
         <c:TwoColumnsPanel Margin="25"
                            Background="Orange">
-            <TextBlock Text="Kika1"/>
+            <TextBlock Text="Kika1"
+                       c:TwoColumnsPanel.BelongsToRight="True"/>
             <TextBlock Text="Kika2"/>
-            <TextBlock Text="Kika2"/>
-            <TextBlock Text="Kika2"/>
-            <TextBlock Text="Kika2"/>
+            <TextBlock Text="Kika2"
+                       c:TwoColumnsPanel.BelongsToRight="True"/>
+            <TextBlock Text="Kika3"
+                       c:TwoColumnsPanel.BelongsToRight="True"/>
+            <TextBlock Text="Kika2"
+                       c:TwoColumnsPanel.BelongsToRight="True"/>
         </c:TwoColumnsPanel>
     </Grid>
 </Window>

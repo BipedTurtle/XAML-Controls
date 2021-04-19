@@ -10,6 +10,19 @@ namespace XAML_Controls.Controls
 {
     public class TwoColumnsPanel : Panel
     {
+        public static bool GetBelongsToRight(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(BelongsToRightProperty);
+        }
+
+        public static void SetBelongsToRight(DependencyObject obj, bool value)
+        {
+            obj.SetValue(BelongsToRightProperty, value);
+        }
+
+        public static readonly DependencyProperty BelongsToRightProperty =
+            DependencyProperty.RegisterAttached("BelongsToRight", typeof(bool), typeof(TwoColumnsPanel), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsParentArrange));
+
         protected override Size MeasureOverride(Size availableSize)
         {
             var columnAvailableSize = new Size(availableSize.Width / 2, availableSize.Height);
@@ -22,23 +35,20 @@ namespace XAML_Controls.Controls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            int separator = 0;
             var leftLocation = new Point();
             double columnWidth = finalSize.Width / 2;
             var rightLocation = new Point(columnWidth, 0);
 
             foreach (UIElement child in this.InternalChildren) {
-                bool isLeftColumn = separator % 2 == 0;
+                bool isRight = (bool)child.GetValue(BelongsToRightProperty);
                 child.Arrange(new Rect(
-                    isLeftColumn ? leftLocation : rightLocation, 
+                    isRight ? rightLocation : leftLocation, 
                     child.DesiredSize));
 
-                if (isLeftColumn)
-                    leftLocation.Y += child.DesiredSize.Height;
-                else
+                if (isRight)
                     rightLocation.Y += child.DesiredSize.Height;
-
-                separator++;
+                else
+                    leftLocation.Y += child.DesiredSize.Height;
             }
 
             return finalSize;
