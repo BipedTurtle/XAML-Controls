@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace XAML_Controls.Controls
 {
     public class TwoColumnsPanel : Panel
     {
+        public TwoColumnsPanel()
+        {
+            Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+        }
+
         public static bool GetBelongsToRight(DependencyObject obj)
         {
             return (bool)obj.GetValue(BelongsToRightProperty);

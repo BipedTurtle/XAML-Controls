@@ -6,19 +6,42 @@
         xmlns:c="clr-namespace:XAML_Controls.Controls"
         xmlns:local="clr-namespace:XAML_Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
+        Title="MainWindow" Height="450" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Orange" Color="Orange"/>
+    </Window.Resources>
+    
     <Grid>
-        <c:TwoColumnsPanel Margin="25"
-                           Background="Orange">
-            <TextBlock Text="Kika1"
-                       c:TwoColumnsPanel.BelongsToRight="True"/>
-            <TextBlock Text="Kika2"/>
-            <TextBlock Text="Kika2"
-                       c:TwoColumnsPanel.BelongsToRight="True"/>
-            <TextBlock Text="Kika3"
-                       c:TwoColumnsPanel.BelongsToRight="True"/>
-            <TextBlock Text="Kika2"
-                       c:TwoColumnsPanel.BelongsToRight="True"/>
-        </c:TwoColumnsPanel>
+        <Label x:Name="MenuLabel"
+               Panel.ZIndex="1"
+                Content="Menu"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Top"
+                Foreground="White" Background="Black">
+            <Label.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation To="200"
+                                                Storyboard.Target="{Binding Source={x:Reference MenuItems}}"
+                                                Storyboard.TargetProperty="(ItemsControl.RenderTransform).(TranslateTransform.Y)"
+                                                Duration="0:0:.5"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Label.Triggers>
+        </Label>
+        <ItemsControl x:Name="MenuItems"
+                        Width="200"
+                      VerticalAlignment="Top">
+            <ItemsControl.RenderTransform>
+                <TranslateTransform/>
+            </ItemsControl.RenderTransform>
+            <TextBlock Text="Kika"/>
+            <TextBlock Text="Kika"/>
+            <TextBlock Text="Kika"/>
+            <TextBlock Text="Kika"/>
+        </ItemsControl>
     </Grid>
 </Window>
